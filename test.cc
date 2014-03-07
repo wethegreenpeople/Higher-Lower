@@ -16,6 +16,7 @@ int main()
         double cnt = -1;
         
         auto deckEnd = deck.end();
+        auto deckStart = deck.begin();
         
         while (card < *deckEnd){
             --deckEnd;
@@ -27,14 +28,9 @@ int main()
         }
         
         else if (draw > 0 && card < lastPlayed){
-            deck.erase(deck.begin() + card);
+            deck.erase(deck.begin() + card - 1);
+            
         }
-        
-        /*else if (draw > 0 && card > lastPlayed && simpleDraw != 0){
-            deck.erase((deck.begin() + card) - simpleDraw);
-            ++simpleDraw;
-            }
-            */
         
         else{
         deck.erase((deck.begin() + card) - simpleDraw);
@@ -47,6 +43,7 @@ int main()
         
         
         
+        // Used for debugging. Will output all the contents of the deck after chosen card has been removed.
         for (auto contents = deck.begin(); contents != deck.end(); ++contents)
             std::cout<< *contents << std::endl;
         
@@ -63,5 +60,3 @@ int main()
     
     return 0;
 }
-
-//deck.end() - (deck.size() - card)
