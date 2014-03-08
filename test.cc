@@ -23,19 +23,12 @@ int main()
             ++cnt;
         }
         
-        if (draw > 0 && card > lastPlayed){
-            deck.erase(deck.begin() + (card - draw));
+        if (card == 13){
+            deck.erase(deck.end() - 1);
         }
         
-        else if (draw > 0 && card < lastPlayed){
-            deck.erase(deck.begin() + card - 1);
-            
-        }
-        
-        else{
-        deck.erase((deck.begin() + card) - simpleDraw);
-        ++simpleDraw;
-        //deck.erase((deck.end() - deck.size()) + card);
+        else {
+            deck.erase(deck.end() - ((cnt + 1)));
         }
     
         // Number of cards that are higher
@@ -43,16 +36,16 @@ int main()
         
         
         
-        // Used for debugging. Will output all the contents of the deck after chosen card has been removed.
+        /*
         for (auto contents = deck.begin(); contents != deck.end(); ++contents)
             std::cout<< *contents << std::endl;
-        
+        */
         
         // Number of cards left
-        std::cout << deck.size() - 1 << std::endl;
+        std::cout << (deck.size()) - 1 << std::endl;
         
         // Chance of drawing a card that's higher
-        std::cout << (cnt / (deck.size() - 1)) * 100 << "%" << std::endl;
+        std::cout << (cnt / ((deck.size()) - 1)) * 100 << "%" << std::endl;
         
         ++draw;
         lastPlayed = card;
@@ -60,3 +53,25 @@ int main()
     
     return 0;
 }
+
+//deck.end() - (deck.size() - card)
+
+/*
+
+else if (card != (*deckStart + card) && card < lastPlayed){
+            deck.erase(deck.begin() + card);
+        }
+        
+        else if (draw > 0 && card > lastPlayed && simpleDraw != 0){
+            deck.erase((deck.begin() + card) - simpleDraw);
+            ++simpleDraw;
+            }
+            
+        
+        else{
+        deck.erase((deck.begin() + card) - simpleDraw);
+        ++simpleDraw;
+        //deck.erase((deck.end() - deck.size()) + card);
+        }
+
+*/
